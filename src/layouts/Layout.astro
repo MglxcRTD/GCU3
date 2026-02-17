@@ -14,7 +14,7 @@ import "../styles/global.css";
   </head>
   <body class="bg-[#020202] text-white antialiased relative overflow-x-hidden">
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-      <div class="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.9)]">
+      <div class="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.4)]">
       </div>
     </div>
 
@@ -49,23 +49,37 @@ import "../styles/global.css";
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
   }
 
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at center, #0a0a0a 0%, #020202 100%);
+  }
 
+  /* Aplicamos el degradado a todas las secciones para que no haya cortes feos... */
   section {
     position: relative;
     mask-image: linear-gradient(
       to bottom,
       transparent 0%,
-      black 15%,
-      black 85%,
+      black 10%,
+      black 90%,
       transparent 100%
     );
     -webkit-mask-image: linear-gradient(
       to bottom,
       transparent 0%,
-      black 15%,
-      black 85%,
+      black 10%,
+      black 90%,
       transparent 100%
     );
+  }
+
+  /* ...PERO dejamos la sección de juegos libre de máscaras para que brillen los logos y textos */
+  #games {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
   }
 
   * {
